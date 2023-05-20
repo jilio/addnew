@@ -29,7 +29,7 @@ if (!componentType) {
 }
 
 // Update tsconfig.json if required
-const tsconfigPath = path.join(__dirname, 'tsconfig.json')
+const tsconfigPath = path.join(process.cwd(), 'tsconfig.json')
 if (fs.existsSync(tsconfigPath)) {
   let tsconfig = eval('(' + fs.readFileSync(tsconfigPath, 'utf-8') + ')')
   let mappingPath = `src/${componentType}/*`
@@ -48,7 +48,7 @@ if (fs.existsSync(tsconfigPath)) {
 }
 
 if (componentType === '6_shared') {
-  const sharedDirPath = path.join(__dirname, 'src', componentType)
+  const sharedDirPath = path.join(process.cwd(), 'src', componentType)
   const sharedFilePath = path.join(sharedDirPath, `${componentName}.ts`)
 
   if (!fs.existsSync(sharedDirPath)) {
@@ -68,7 +68,7 @@ if (componentType === '6_shared') {
 }
 
 const componentDirPath = path.join(
-  __dirname,
+  process.cwd(),
   'src',
   componentType,
   componentName
