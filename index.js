@@ -88,7 +88,7 @@ const componentContent = `export default function ${componentNameCapitalized}() 
 }
 `
 
-const indexContent = `export { default } from './${componentNameCapitalized}'
+const indexContent = `export { default as ${componentNameCapitalized} } from './${componentNameCapitalized}'
 `
 
 fs.writeFileSync(componentPath, componentContent)

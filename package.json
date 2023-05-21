@@ -1,6 +1,6 @@
 {
   "name": "@jilio/addnew",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "index.js",
   "description": "A utility for adding new components using feature-sliced methodology",
   "repository": "git@github.com:jilio/addnew.git",

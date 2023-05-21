@@ -6,9 +6,11 @@ This tool supports the generation of various component types such as pages, widg
 
 ## Installation
 
-You don't need to install `@jilio/addnew`, it can be run using `npx`.
+```bash
+yarn add -D @jilio/addnew
+```
 
-However, for easier access, you can add it to the scripts section of your `package.json`:
+For easier access, you can add it to the scripts section of your `package.json`:
 
 ```json
 "scripts": {
