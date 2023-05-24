@@ -1,6 +1,6 @@
 {
   "name": "@jilio/addnew",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "main": "index.js",
   "description": "A utility for adding new components using feature-sliced methodology",
   "repository": "git@github.com:jilio/addnew.git",
@@ -8,5 +8,8 @@
   "license": "MIT",
   "bin": {
     "addnew": "./index.js"
+  },
+  "devDependencies": {
+    "prettier": "2.8.8"
   }
 }

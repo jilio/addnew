@@ -33,12 +33,9 @@ const tsconfigPath = path.join(process.cwd(), 'tsconfig.json')
 if (fs.existsSync(tsconfigPath)) {
   let tsconfig = eval('(' + fs.readFileSync(tsconfigPath, 'utf-8') + ')')
   let mappingPath = `src/${componentType}/*`
-  if (
-    tsconfig.compilerOptions &&
-    tsconfig.compilerOptions.baseUrl
-  ) {
+  if (tsconfig.compilerOptions && tsconfig.compilerOptions.baseUrl) {
     if (!tsconfig.compilerOptions.paths) {
-      tsconfig.compilerOptions.paths = {};
+      tsconfig.compilerOptions.paths = {}
     }
     if (!tsconfig.compilerOptions.paths[`${args[0]}/*`]) {
       tsconfig.compilerOptions.paths[`${args[0]}/*`] = [mappingPath]
@@ -54,7 +51,7 @@ if (componentType === '6_shared') {
   if (!fs.existsSync(sharedDirPath)) {
     fs.mkdirSync(sharedDirPath, { recursive: true })
   }
-  
+
   if (!fs.existsSync(sharedFilePath)) {
     fs.writeFileSync(sharedFilePath, '')
     console.log(
@@ -65,6 +62,11 @@ if (componentType === '6_shared') {
   }
 
   process.exit(0)
+}
+
+const appDirPath = path.join(process.cwd(), 'src', '1_app')
+if (!fs.existsSync(appDirPath)) {
+  fs.mkdirSync(appDirPath, { recursive: true })
 }
 
 const componentDirPath = path.join(
@@ -78,6 +80,7 @@ const componentPath = path.join(
   `${componentNameCapitalized}.tsx`
 )
 const indexPath = path.join(componentDirPath, `index.ts`)
+const modelPath = path.join(componentDirPath, `model.ts`)
 
 if (!fs.existsSync(componentDirPath)) {
   fs.mkdirSync(componentDirPath, { recursive: true })
@@ -89,10 +92,15 @@ const componentContent = `export default function ${componentNameCapitalized}() 
 `
 
 const indexContent = `export { default as ${componentNameCapitalized} } from './${componentNameCapitalized}'
+export * as ${componentName} from './model'
+`
+
+const modelContent = `export const store = null
 `
 
 fs.writeFileSync(componentPath, componentContent)
 fs.writeFileSync(indexPath, indexContent)
+fs.writeFileSync(modelPath, modelContent)
 
 console.log(
   `${args[0]} ${componentNameCapitalized} has been created successfully in the ${componentType} directory.`
